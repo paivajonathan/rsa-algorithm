@@ -42,41 +42,6 @@ class ModularArithmeticUtils {
     }
 }
 
-/*
-
-function isPrimal(n) {
-    if (n > 1) {
-        for (let i = 2; i < n; i++) {
-            if (n % i === 0) {
-                return false
-            }
-        }
-        return true
-    } else {
-        return false
-    }
-}
-
-function generatePrimalPair() {
-    let n1, n2 = 0
-    
-    while (true) {
-        n1 = Math.floor(Math.random() * 100)
-
-        if (isPrimal(n1) && (n1 % 6 === 5)) break
-    }
-
-    while (true) {
-        n2 = Math.floor(Math.random() * 100)
-
-        if (isPrimal(n2) && (n2 % 6 === 5) && (n2 !== n1)) break
-    }
-
-    return [n1, n2]
-} 
-
-*/
-
 function encrypt() {
     const toEncryptTextInput = document.getElementById('toEncryptText')
     const toEncryptText = toEncryptTextInput.value
@@ -120,17 +85,6 @@ function encrypt() {
     encryptedTextResult.textContent = encryptedText
     toDecryptTextInput.value = encryptedText
 }
-
-/*
-
-function getInverse(n, mod) {
-    for (let i = 1; i < mod; i++) {
-        if ( (n*i) % mod === 1 ) return i
-    }
-    return -1
-}
-
-*/
 
 function decrypt() {
     const encryptedTextResult = document.getElementById('encryptedText')
