@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto RSA</title>
+    <script defer src="RSAalgorithm.js"></script>
+</head>
+<body>
+    <input type="text" id="toEncryptText" onkeyup="toUpper(this)" pattern="[A-Z ]+" />
+    <button onclick="encrypt()">Codificar</button>
+    <p id="encryptedText"></p>
+
+    <input type="text" id="toDecryptText" readonly />
+    <button onclick="decrypt()">Decodificar</button>
+    <p id="decryptedText"></p>
+</body>
+</html>
