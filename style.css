@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    min-height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    
+    background-color: #27374D;
+}
+
+h1, h2 {
+    margin: .5rem 0;
+    
+    text-align: center;
+    
+    color: white;
+}
+
+.form {
+    width: 50%;
+    
+    padding: 2rem 1rem;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    
+    box-shadow: 0 0 2.5px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+
+    background-color: #EEE;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input-group input {
+    width: 75%;
+
+    border: none;
+    box-shadow: 0 0 2.5px rgba(0, 0, 0, 1);
+    border-radius: .5rem;
+    padding: .5rem;
+
+    font-size: 1rem;
+    text-align: center;
+}
+
+.input-group input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.input-group button {
+    width: 10rem;
+
+    padding: 1rem 2rem;
+    border: none;
+    box-shadow: 0 0 2.5px rgba(0, 0, 0, 1);
+    border-radius: 1rem;
+
+    background-color: #526D82;
+    color: white;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+}
+
+.input-group p {
+    padding: 0 2rem;
+
+    text-align: center;
+    font-weight: bold;
+}

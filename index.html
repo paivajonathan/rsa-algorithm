@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projeto RSA</title>
-    <script defer src="RSAalgorithm.js"></script>
-</head>
-<body>
-    <input type="text" id="toEncryptText" onkeyup="toUpper(this)" pattern="[A-Z ]+" />
-    <button onclick="encrypt()">Codificar</button>
-    <p id="encryptedText"></p>
-
-    <input type="text" id="toDecryptText" readonly />
-    <button onclick="decrypt()">Decodificar</button>
-    <p id="decryptedText"></p>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Projeto RSA</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script defer src="RSAalgorithm.js"></script>
+    </head>
+    <body>
+        <main>
+            <div class="title-group">
+                <h1>Seja bem vindo</h1>
+                <h2>à simulação do algoritmo RSA!</h2>
+            </div>
+            <div class="form">
+                <div class="input-group">
+                    <input type="text" id="toEncryptText" onkeyup="toUpper(this)" pattern="[A-Z ]+" placeholder="Digite aqui o texto a ser codificado..." />
+                    <button onclick="encrypt()">Codificar</button>
+                    <p id="encryptedText"></p>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="toDecryptText" readonly placeholder="Texto a ser decodificado aparecerá aqui..." />
+                    <button onclick="decrypt()">Decodificar</button>
+                    <p id="decryptedText"></p>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
