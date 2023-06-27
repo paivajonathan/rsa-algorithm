@@ -41,8 +41,8 @@ class ModularArithmeticUtils {
 }
 
 function encrypt() {
-    const toEncryptTextInput = document.getElementById('toEncryptText')
-    const toEncryptText = toEncryptTextInput.value
+    const toEncryptTextArea = document.getElementById('toEncryptText')
+    const toEncryptText = toEncryptTextArea.textContent
     
     const encryptedBlocksArray = []
     
@@ -72,19 +72,19 @@ function encrypt() {
         encryptedBlocksArray.push(encryptedBlock)
     }
 
-    toEncryptTextInput.value = ''
+    toEncryptTextArea.textContent = ''
     
     let encryptedText = encryptedBlocksArray.join(' ')
     
     document.getElementById('encryptedText').textContent = encryptedText    
     document.getElementById('keyP').value = p
     document.getElementById('keyQ').value = q
-    document.getElementById('toDecryptText').value = encryptedText
+    document.getElementById('toDecryptText').textContent = encryptedText
 }
 
 function decrypt() {
-    const toDecryptTextInput = document.getElementById('toDecryptText')
-    const encryptedBlocksArray = toDecryptTextInput.value.split(' ')
+    const toDecryptTextArea = document.getElementById('toDecryptText')
+    const encryptedBlocksArray = toDecryptTextArea.textContent.split(' ')
 
     const decryptedBlocksArray = []
     const decryptedCharArray = []
@@ -115,14 +115,28 @@ function decrypt() {
     document.getElementById('encryptedText').textContent = ''
     document.getElementById('keyP').value = ''
     document.getElementById('keyQ').value = ''
-    toDecryptTextInput.value = ''
+    toDecryptTextArea.textContent = ''
     document.getElementById('decryptedText').textContent = decryptedCharArray.join('')
 }
 
+function setTextCursorOnEnd(object) {
+    if (object.tagName !== 'TEXTAREA' && object.getAttribute('contenteditable') === 'true') {
+        object.focus()
+        window.getSelection().selectAllChildren(object)
+        window.getSelection().collapseToEnd()
+    } else {
+        object.focus()
+        object.select()
+        window.getSelection().collapseToEnd()
+    }
+}
+
 function toUpperAndKeepAlphabets(object) {
-    object.value = object.value.toUpperCase().replace(/[^A-Z ]/g, '')
+    object.innerHTML = object.innerHTML.toUpperCase().replace(/[^A-Z ]/g, '')
+    setTextCursorOnEnd(object)
 }
 
 function keepNumbers(object) {
-    object.value = object.value.replace(/[^0-9]/g, '')
+    object.innerText = object.innerText.replace(/[^0-9]/g, '')
+    setTextCursorOnEnd(object)
 }

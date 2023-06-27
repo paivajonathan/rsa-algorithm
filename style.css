@@ -53,7 +53,7 @@ h1, h2 {
     gap: 1rem;
 }
 
-.input-group > input, .input-primal-key-group > input {
+.input-group > div[contenteditable], .input-primal-key-group > input {
     border: none;
     box-shadow: 0 0 3px rgba(0, 0, 0, 1);
     border-radius: .75rem;
@@ -61,13 +61,14 @@ h1, h2 {
     font-size: 1rem;
     text-align: center;
     transition: box-shadow 200ms;
+    background-color: white;
 }
 
-.input-group > input {
+.input-group > div[contenteditable] {
     width: 75%;
 }
 
-.input-group > input:focus, .input-primal-key-group > input:focus {
+.input-group > div[contenteditable]:focus, .input-primal-key-group > input:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
@@ -124,3 +125,8 @@ h1, h2 {
         width: 85%;
     }
 }
+
+[contenteditable="true"]:empty:not(:focus):before{
+    content:attr(custom-placeholder);
+    color:grey;
+  }
