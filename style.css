@@ -66,6 +66,8 @@ h1, h2 {
 
 .input-group > div[contenteditable] {
     width: 75%;
+    cursor: text;
+    white-space: pre-wrap;
 }
 
 .input-group > div[contenteditable]:focus, .input-primal-key-group > input:focus {
@@ -87,16 +89,17 @@ h1, h2 {
     font-size: 1rem;
 
     cursor: pointer;
-    transition: transform 200ms;
+    transition: transform 200ms, box-shadow 200ms;
 }
 
-.input-group > button:hover {
+.input-group > button:hover, .input-group > button:focus {
+    outline: none;
     transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
-.input-group > p {
+.input-group p {
     padding: 0 2rem;
-
     text-align: center;
     font-weight: bold;
 }
@@ -107,6 +110,10 @@ h1, h2 {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+}
+
+.input-primal-key-group ~ p {
+    word-break: break-all;
 }
 
 .input-primal-key-group > input {
@@ -129,4 +136,4 @@ h1, h2 {
 [contenteditable="true"]:empty:not(:focus):before{
     content:attr(custom-placeholder);
     color:grey;
-  }
+}

@@ -42,7 +42,12 @@ class ModularArithmeticUtils {
 
 function encrypt() {
     const toEncryptTextArea = document.getElementById('toEncryptText')
-    const toEncryptText = toEncryptTextArea.textContent
+    const toEncryptText = toEncryptTextArea.innerText
+
+    if (!toEncryptText) {
+        alert('Por favor digite um texto para ser codificado...')
+        return
+    }
     
     const encryptedBlocksArray = []
     
@@ -72,19 +77,24 @@ function encrypt() {
         encryptedBlocksArray.push(encryptedBlock)
     }
 
-    toEncryptTextArea.textContent = ''
+    toEncryptTextArea.innerText = ''
     
     let encryptedText = encryptedBlocksArray.join(' ')
     
-    document.getElementById('encryptedText').textContent = encryptedText    
+    document.getElementById('encryptedText').innerText = encryptedText    
     document.getElementById('keyP').value = p
     document.getElementById('keyQ').value = q
-    document.getElementById('toDecryptText').textContent = encryptedText
+    document.getElementById('toDecryptText').innerText = encryptedText
 }
 
 function decrypt() {
     const toDecryptTextArea = document.getElementById('toDecryptText')
-    const encryptedBlocksArray = toDecryptTextArea.textContent.split(' ')
+    if (!toDecryptTextArea.innerText) {
+        alert('Por favor insira um RSA para ser decodificado...')
+        return
+    }
+
+    const encryptedBlocksArray = toDecryptTextArea.innerText.split(' ')
 
     const decryptedBlocksArray = []
     const decryptedCharArray = []
@@ -112,11 +122,13 @@ function decrypt() {
         }
     }
 
-    document.getElementById('encryptedText').textContent = ''
+    let decryptedText = decryptedCharArray.join('')
+
+    document.getElementById('encryptedText').innerText = ''
     document.getElementById('keyP').value = ''
     document.getElementById('keyQ').value = ''
-    toDecryptTextArea.textContent = ''
-    document.getElementById('decryptedText').textContent = decryptedCharArray.join('')
+    toDecryptTextArea.innerText = ''
+    document.getElementById('decryptedText').innerText = decryptedText
 }
 
 function setTextCursorOnEnd(object) {
@@ -132,11 +144,11 @@ function setTextCursorOnEnd(object) {
 }
 
 function toUpperAndKeepAlphabets(object) {
-    object.innerHTML = object.innerHTML.toUpperCase().replace(/[^A-Z ]/g, '')
+    object.innerText = object.innerText.toUpperCase().replace(/[^A-Z ]/g, '')
     setTextCursorOnEnd(object)
 }
 
 function keepNumbers(object) {
-    object.innerText = object.innerText.replace(/[^0-9]/g, '')
+    object.innerText = object.innerText.replace(/[^0-9 ]/g, '')
     setTextCursorOnEnd(object)
 }
