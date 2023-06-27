@@ -1,5 +1,3 @@
-let primalPair = []
-
 class PrimalUtils {
     static isPrimal(n) {
         if (n > 1) {
@@ -46,15 +44,11 @@ function encrypt() {
     const toEncryptTextInput = document.getElementById('toEncryptText')
     const toEncryptText = toEncryptTextInput.value
     
-    const encryptedTextResult = document.getElementById('encryptedText')
-    const toDecryptTextInput = document.getElementById('toDecryptText')
-    
     const encryptedBlocksArray = []
-    let encryptedText = ''
     
     let block, encryptedBlock = 0
 
-    primalPair = PrimalUtils.generatePrimalPair()
+    const primalPair = PrimalUtils.generatePrimalPair()
 
     const p = primalPair[0]
     const q = primalPair[1]
@@ -80,27 +74,25 @@ function encrypt() {
 
     toEncryptTextInput.value = ''
     
-    encryptedText = encryptedBlocksArray.join(' ')
+    let encryptedText = encryptedBlocksArray.join(' ')
     
-    encryptedTextResult.textContent = encryptedText
-    toDecryptTextInput.value = encryptedText
+    document.getElementById('encryptedText').textContent = encryptedText    
+    document.getElementById('keyP').value = p
+    document.getElementById('keyQ').value = q
+    document.getElementById('toDecryptText').value = encryptedText
 }
 
 function decrypt() {
-    const encryptedTextResult = document.getElementById('encryptedText')
-
     const toDecryptTextInput = document.getElementById('toDecryptText')
     const encryptedBlocksArray = toDecryptTextInput.value.split(' ')
 
-    const decryptedTextResult = document.getElementById('decryptedText')
-
     const decryptedBlocksArray = []
-    const decryptedTextArray = []
+    const decryptedCharArray = []
     
-    let decryptedBlockAsNumber = 0 
+    let decryptedBlockAsNumber = 0
 
-    const p = primalPair[0]
-    const q = primalPair[1]
+    const p = parseInt(document.getElementById('keyP').value)
+    const q = parseInt(document.getElementById('keyQ').value)
     const n = p * q
 
     let d = ModularArithmeticUtils.getInverse(3, (p-1)*(q-1))
@@ -114,18 +106,23 @@ function decrypt() {
         decryptedBlockAsNumber = parseInt(decryptedBlock)
 
         if (decryptedBlockAsNumber === 99) {
-            decryptedTextArray.push( String.fromCharCode( decryptedBlockAsNumber - 67 ) )
+            decryptedCharArray.push( String.fromCharCode( decryptedBlockAsNumber - 67 ) )
         } else {
-            decryptedTextArray.push( String.fromCharCode( decryptedBlockAsNumber + 55 ) )
+            decryptedCharArray.push( String.fromCharCode( decryptedBlockAsNumber + 55 ) )
         }
     }
 
-    encryptedTextResult.textContent = ''
+    document.getElementById('encryptedText').textContent = ''
+    document.getElementById('keyP').value = ''
+    document.getElementById('keyQ').value = ''
     toDecryptTextInput.value = ''
-
-    decryptedTextResult.textContent = decryptedTextArray.join('')
+    document.getElementById('decryptedText').textContent = decryptedCharArray.join('')
 }
 
-function toUpper(object) {
+function toUpperAndKeepAlphabets(object) {
     object.value = object.value.toUpperCase().replace(/[^A-Z ]/g, '')
+}
+
+function keepNumbers(object) {
+    object.value = object.value.replace(/[^0-9]/g, '')
 }

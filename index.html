@@ -15,12 +15,16 @@
             </div>
             <div class="form">
                 <div class="input-group">
-                    <input type="text" id="toEncryptText" onkeyup="toUpper(this)" pattern="[A-Z ]+" placeholder="Digite aqui o texto a ser codificado..." />
+                    <input type="text" id="toEncryptText" onkeyup="toUpperAndKeepAlphabets(this)" placeholder="Digite aqui o texto a ser codificado..." maxlength="30" />
                     <button onclick="encrypt()">Codificar</button>
                     <p id="encryptedText"></p>
                 </div>
                 <div class="input-group">
-                    <input type="text" id="toDecryptText" readonly placeholder="Texto a ser decodificado aparecerá aqui..." />
+                    <div class="input-primal-key-group">
+                        <input id="keyP" maxlength="2" placeholder="Chave 1" onkeyup="keepNumbers(this)" />
+                        <input id="keyQ" maxlength="2" placeholder="Chave 2" onkeyup="keepNumbers(this)" />
+                    </div>
+                    <input type="text" id="toDecryptText" placeholder="Digite aqui o RSA a ser decodificado..." />
                     <button onclick="decrypt()">Decodificar</button>
                     <p id="decryptedText"></p>
                 </div>

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+:root {
+    --blue-background: #27374D
+}
+
 * {
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     margin: 0;
@@ -15,7 +19,7 @@ main {
     align-items: center;
     gap: 2.5rem;
     
-    background-color: #27374D;
+    background-color: var(--blue-background);
 }
 
 h1, h2 {
@@ -27,7 +31,7 @@ h1, h2 {
 }
 
 .form {
-    width: 50%;
+    width: 55%;
     
     padding: 2rem 1rem;
     
@@ -39,6 +43,7 @@ h1, h2 {
     border-radius: 10px;
 
     background-color: #EEE;
+    transition: width 200ms ease-in-out;
 }
 
 .input-group {
@@ -48,24 +53,26 @@ h1, h2 {
     gap: 1rem;
 }
 
-.input-group input {
-    width: 75%;
-
+.input-group > input, .input-primal-key-group > input {
     border: none;
-    box-shadow: 0 0 2.5px rgba(0, 0, 0, 1);
-    border-radius: .5rem;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+    border-radius: .75rem;
     padding: .5rem;
-
     font-size: 1rem;
     text-align: center;
+    transition: box-shadow 200ms;
 }
 
-.input-group input:focus {
+.input-group > input {
+    width: 75%;
+}
+
+.input-group > input:focus, .input-primal-key-group > input:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
-.input-group button {
+.input-group > button {
     width: 10rem;
 
     padding: 1rem 2rem;
@@ -73,17 +80,47 @@ h1, h2 {
     box-shadow: 0 0 2.5px rgba(0, 0, 0, 1);
     border-radius: 1rem;
 
-    background-color: #526D82;
+    background-color: var(--blue-background);
     color: white;
 
     font-size: 1rem;
 
     cursor: pointer;
+    transition: transform 200ms;
 }
 
-.input-group p {
+.input-group > button:hover {
+    transform: scale(1.05);
+}
+
+.input-group > p {
     padding: 0 2rem;
 
     text-align: center;
     font-weight: bold;
+}
+
+.input-primal-key-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.input-primal-key-group > input {
+    width: 5rem;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+    .form {
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .form, .form > .input-group > input {
+        width: 85%;
+    }
 }
