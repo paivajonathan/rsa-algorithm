@@ -61,13 +61,12 @@ function encrypt() {
 
     const primalPair = PrimalUtils.generatePrimalPair()
 
-    const p = primalPair[0]
-    const q = primalPair[1]
-    const n = p * q
+    const privateKey1 = primalPair[0]
+    const privateKey2 = primalPair[1]
+    const publicKey = privateKey1 * privateKey2
     
-    console.clear()
-    console.log(`Generated Keys: [${p}, ${q}] => ${p} * ${q} = ${n}`);
-
+    alert(`Generated Keys: [${privateKey1}, ${privateKey2}] => ${privateKey1} * ${privateKey2} = ${publicKey}`);
+    
     for (const char of toEncryptText) {
         if (char === ' ') {
             block = char.charCodeAt(0) + 67
@@ -75,10 +74,7 @@ function encrypt() {
             block = char.charCodeAt(0) - 55
         }
 
-        encryptedBlock = Math.pow(block, 3) % n
-
-        console.log(`Block: ${block}`);
-        console.log(`Encrypted Block: ${encryptedBlock}`);
+        encryptedBlock = Math.pow(block, 3) % publicKey
 
         encryptedBlocksArray.push(encryptedBlock)
     }
@@ -88,8 +84,8 @@ function encrypt() {
     let encryptedText = encryptedBlocksArray.join(' ')
     
     document.getElementById('encryptedText').innerText = encryptedText    
-    document.getElementById('keyP').value = p
-    document.getElementById('keyQ').value = q
+    document.getElementById('keyP').value = privateKey1
+    document.getElementById('keyQ').value = privateKey2
     document.getElementById('toDecryptText').innerText = encryptedText
 }
 
@@ -105,19 +101,19 @@ function decrypt() {
     const decryptedBlocksArray = []
     const decryptedCharArray = []
     
-    let decryptedBlockAsNumber = 0
+    
+    const privateKey1 = parseInt(document.getElementById('keyP').value)
+    const privateKey2 = parseInt(document.getElementById('keyQ').value)
+    const publicKey = privateKey1 * privateKey2
 
-    const p = parseInt(document.getElementById('keyP').value)
-    const q = parseInt(document.getElementById('keyQ').value)
-    const n = p * q
-
-    let d = ModularArithmeticUtils.getInverse(3, (p-1)*(q-1))
-    console.log(`Inverse of 3 mod(${(p-1)*(q-1)}): ${d}`);
+    let decryptingKey = ModularArithmeticUtils.getInverse(3, (privateKey1 - 1) * (privateKey2 - 1))
+    alert(`Decrypting key: ${decryptingKey}`)
 
     for (const encryptedBlock of encryptedBlocksArray) {
-        decryptedBlocksArray.push( BigInt( BigInt(encryptedBlock) ** BigInt(d) ) % BigInt(n) )
+        decryptedBlocksArray.push( BigInt( BigInt(encryptedBlock) ** BigInt(decryptingKey) ) % BigInt(publicKey) )
     }
-
+    
+    let decryptedBlockAsNumber = 0
     for (const decryptedBlock of decryptedBlocksArray) {
         decryptedBlockAsNumber = parseInt(decryptedBlock)
 
