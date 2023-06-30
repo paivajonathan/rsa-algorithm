@@ -7,7 +7,7 @@ class RandomUtils {
 class PrimalUtils {
     static isPrimal(n) {
         if (n > 1) {
-            for (let i = 2; i < n; i++) {
+            for (let i = 2; i < Math.sqrt(n); i++) {
                 if (n % i === 0) {
                     return false
                 }
