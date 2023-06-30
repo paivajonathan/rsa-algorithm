@@ -1,3 +1,9 @@
+class RandomUtils {
+    static getRandomBetween(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+}
+
 class PrimalUtils {
     static isPrimal(n) {
         if (n > 1) {
@@ -16,13 +22,13 @@ class PrimalUtils {
         let n1, n2 = 0
         
         while (true) {
-            n1 = Math.floor(Math.random() * 100)
+            n1 = RandomUtils.getRandomBetween(10, 100)
     
             if (this.isPrimal(n1) && (n1 % 6 === 5)) break
         }
     
         while (true) {
-            n2 = Math.floor(Math.random() * 100)
+            n2 = RandomUtils.getRandomBetween(10, 100)
     
             if (this.isPrimal(n2) && (n2 % 6 === 5) && (n2 !== n1)) break
         }
