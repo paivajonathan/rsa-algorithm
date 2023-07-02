@@ -1,4 +1,5 @@
 import { getInverse } from "./modularArithmeticUtils.js"
+import { TotientFunction, DecryptedBlock } from './RSAUtils.js'
 
 export function decrypt() {
     const toDecryptTextArea = document.getElementById('toDecryptText')
@@ -7,35 +8,29 @@ export function decrypt() {
         return
     }
 
-    const encryptedBlocksArray = toDecryptTextArea.innerText.split(' ')
-
-    const decryptedBlocksArray = []
+    const encryptedBlocksValuesArray = toDecryptTextArea.innerText.split(' ')
+    const decryptedBlocksValuesArray = []
     const decryptedCharArray = []
-    
     
     const privateKey1 = parseInt(document.getElementById('keyP').value)
     const privateKey2 = parseInt(document.getElementById('keyQ').value)
     const publicKey = privateKey1 * privateKey2
 
-    let decryptingKey = getInverse(3, (privateKey1 - 1) * (privateKey2 - 1))
-    alert(`Decrypting key: ${decryptingKey}`)
+    const decryptingKey = getInverse(3, new TotientFunction(privateKey1, privateKey2).value)
+    alert(`Chave para a decodificação: ${decryptingKey}`)
 
-    for (const encryptedBlock of encryptedBlocksArray) {
-        decryptedBlocksArray.push( BigInt( BigInt(encryptedBlock) ** BigInt(decryptingKey) ) % BigInt(publicKey) )
+    for (const encryptedBlockValue of encryptedBlocksValuesArray) {
+        const decryptedBlock = new DecryptedBlock(encryptedBlockValue, decryptingKey, publicKey)
+        decryptedBlocksValuesArray.push(decryptedBlock.value)
     }
     
-    let decryptedBlockAsNumber = 0
-    for (const decryptedBlock of decryptedBlocksArray) {
-        decryptedBlockAsNumber = parseInt(decryptedBlock)
-
-        if (decryptedBlockAsNumber === 99) {
-            decryptedCharArray.push( String.fromCharCode( decryptedBlockAsNumber - 67 ) )
-        } else {
-            decryptedCharArray.push( String.fromCharCode( decryptedBlockAsNumber + 55 ) )
-        }
+    for (const decryptedBlockValue of decryptedBlocksValuesArray) {
+        const charCode = decryptedBlockValue === 99 ? decryptedBlockValue - 67 : decryptedBlockValue + 55
+        const char = String.fromCharCode(charCode)
+        decryptedCharArray.push(char)
     }
 
-    let decryptedText = decryptedCharArray.join('')
+    const decryptedText = decryptedCharArray.join('')
 
     document.getElementById('encryptedText').innerText = ''
     document.getElementById('keyP').value = ''

@@ -1,4 +1,5 @@
 import { generatePrimalPair } from "./primalUtils.js"
+import { Block, EncryptedBlock } from './RSAUtils.js'
 
 export function encrypt() {
     const toEncryptTextArea = document.getElementById('toEncryptText')
@@ -8,34 +9,27 @@ export function encrypt() {
         alert('Por favor digite um texto para ser codificado...')
         return
     }
-    
-    const encryptedBlocksArray = []
-    
-    let block, encryptedBlock = 0
 
     const primalPair = generatePrimalPair()
-
     const privateKey1 = primalPair[0]
     const privateKey2 = primalPair[1]
     const publicKey = privateKey1 * privateKey2
     
-    alert(`Generated Keys: [${privateKey1}, ${privateKey2}] => ${privateKey1} * ${privateKey2} = ${publicKey}`);
+    alert(`Chaves geradas: [${privateKey1}, ${privateKey2}] => ${privateKey1} * ${privateKey2} = ${publicKey}`);
     
+    const encryptedBlocksValuesArray = []
+
     for (const char of toEncryptText) {
-        if (char === ' ') {
-            block = char.charCodeAt(0) + 67
-        } else {
-            block = char.charCodeAt(0) - 55
-        }
+        const charCode = char.charCodeAt(0)
+        const blockValue = char === ' ' ? charCode + 67 : charCode - 55
+        const block = new Block(blockValue)
 
-        encryptedBlock = Math.pow(block, 3) % publicKey
-
-        encryptedBlocksArray.push(encryptedBlock)
+        const encryptedBlock = new EncryptedBlock(block.value, publicKey)
+        encryptedBlocksValuesArray.push(encryptedBlock.value)
     }
 
     toEncryptTextArea.innerText = ''
-    
-    let encryptedText = encryptedBlocksArray.join(' ')
+    const encryptedText = encryptedBlocksValuesArray.join(' ')
     
     document.getElementById('encryptedText').innerText = encryptedText    
     document.getElementById('keyP').value = privateKey1
