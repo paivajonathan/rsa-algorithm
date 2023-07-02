@@ -6,8 +6,9 @@ document.getElementById('toEncryptText').addEventListener('keyup', function(even
     toUpperAndKeepAlphabets(event.target)
 })
 
-document.getElementById('encryptButton').addEventListener('click', function() {
+document.getElementById('encryptButton').addEventListener('click', function(event) {
     encrypt()
+    event.target.blur()
 })
 
 document.querySelectorAll('input').forEach(key => {
@@ -22,5 +23,6 @@ document.getElementById('toDecryptText').addEventListener('keyup', function(even
 
 document.getElementById('decryptButton').addEventListener('click', function(event) {
     decrypt()
+    event.target.blur()
 })
 

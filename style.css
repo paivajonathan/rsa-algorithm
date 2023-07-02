@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
-    --blue-background: #27374D
+    --blue-background-primary: #27374D;
+    --blue-background-secondary: #374f70;
 }
 
 * {
@@ -21,7 +22,24 @@ main {
     align-items: center;
     gap: 2.5rem;
     
-    background-color: var(--blue-background);
+    background-image: linear-gradient(to right, #27374D, #374f70);
+    background-size: 200% 200%;
+    background-attachment: fixed;
+    animation: moving-background ease 10s infinite;
+}
+
+@keyframes moving-background {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 h1, h2 {
@@ -86,19 +104,22 @@ h1, h2 {
     box-shadow: 0 0 2.5px rgba(0, 0, 0, 1);
     border-radius: 1rem;
 
-    background-color: var(--blue-background);
+    background-color: var(--blue-background-primary);
     color: white;
 
+    text-align: center;
     font-size: 1rem;
+    font-weight: bolder;
 
     cursor: pointer;
-    transition: transform 200ms, box-shadow 200ms;
+    transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 
 .input-group > button:hover, .input-group > button:focus {
     outline: none;
     transform: scale(1.05);
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    background-color: var(--blue-background-secondary);
 }
 
 .input-group p {
@@ -131,12 +152,12 @@ h1, h2 {
 }
 
 @media only screen and (max-width: 700px) {
-    .form, .form > .input-group > input {
+    .form {
         width: 85%;
     }
 }
 
-[contenteditable="true"]:empty:not(:focus):before {
+[contenteditable="true"]:empty:before {
     content: attr(custom-placeholder);
     color:grey;
 }
