@@ -12,6 +12,8 @@
 
 main {
     min-height: 100vh;
+
+    padding: 3rem 0;
     
     display: flex;
     flex-direction: column;
@@ -65,7 +67,8 @@ h1, h2 {
 }
 
 .input-group > div[contenteditable] {
-    width: 75%;
+    min-height: 7.5rem;
+    width: 85%;
     cursor: text;
     white-space: pre-wrap;
 }
@@ -133,7 +136,7 @@ h1, h2 {
     }
 }
 
-[contenteditable="true"]:empty:not(:focus):before{
-    content:attr(custom-placeholder);
+[contenteditable="true"]:empty:not(:focus):before {
+    content: attr(custom-placeholder);
     color:grey;
 }
