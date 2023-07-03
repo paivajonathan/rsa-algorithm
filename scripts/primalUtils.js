@@ -1,4 +1,4 @@
-import { getRandomBetween } from "./randomUtils.js"
+import { getRandomBetween } from './randomUtils.js'
 
 function isPrimal(n) {
     if (n > 1) {

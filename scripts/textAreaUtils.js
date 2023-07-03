@@ -1,5 +1,5 @@
 export function setTextCursorOnEnd(object) {
-    if (object.tagName !== 'TEXTAREA' && object.getAttribute('contenteditable') === 'true') {
+    if (object.tagName !== 'TEXTAREA' && object.getAttribute('contenteditable') === '') {
         object.focus()
         window.getSelection().selectAllChildren(object)
         window.getSelection().collapseToEnd()

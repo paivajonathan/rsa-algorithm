@@ -1,4 +1,4 @@
-import { getInverse } from "./modularArithmeticUtils.js"
+import { getInverse } from './modularArithmeticUtils.js'
 import { TotientFunction, DecryptedBlock } from './RSAUtils.js'
 
 export function decrypt() {

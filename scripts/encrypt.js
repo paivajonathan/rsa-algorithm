@@ -1,4 +1,4 @@
-import { generatePrimalPair } from "./primalUtils.js"
+import { generatePrimalPair } from './primalUtils.js'
 import { Block, EncryptedBlock } from './RSAUtils.js'
 
 export function encrypt() {
