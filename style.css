@@ -6,9 +6,10 @@
 }
 
 * {
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -73,25 +74,30 @@ h1, h2 {
     gap: 1rem;
 }
 
-.input-group > div[contenteditable], .input-primal-key-group > input {
+.input-group > .editable-div, .keys-input-group > input {
     border: none;
     box-shadow: 0 0 3px rgba(0, 0, 0, 1);
     border-radius: .75rem;
     padding: .5rem;
+
     font-size: 1rem;
     text-align: center;
-    transition: box-shadow 200ms;
+    
     background-color: white;
+    
+    transition: box-shadow 200ms;
 }
 
-.input-group > div[contenteditable] {
+.input-group > .editable-div {
     min-height: 7.5rem;
     width: 85%;
+
     cursor: text;
+
     white-space: pre-wrap;
 }
 
-.input-group > div[contenteditable]:focus, .input-primal-key-group > input:focus {
+.input-group > .editable-div:focus, .keys-input-group > input:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
@@ -117,18 +123,21 @@ h1, h2 {
 
 .input-group > button:hover, .input-group > button:focus {
     outline: none;
-    transform: scale(1.05);
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    
     background-color: var(--blue-background-secondary);
+    
+    transform: scale(1.05);
 }
 
 .input-group p {
     padding: 0 2rem;
+    
     text-align: center;
     font-weight: bold;
 }
 
-.input-primal-key-group {
+.keys-input-group {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -136,11 +145,11 @@ h1, h2 {
     gap: 1rem;
 }
 
-.input-primal-key-group ~ p {
+.keys-input-group ~ p {
     word-break: break-all;
 }
 
-.input-primal-key-group > input {
+.keys-input-group > input {
     width: 5rem;
     text-align: center;
 }
@@ -157,7 +166,7 @@ h1, h2 {
     }
 }
 
-[contenteditable="true"]:empty:before {
+.editable-div:empty:before {
     content: attr(custom-placeholder);
     color:grey;
 }
