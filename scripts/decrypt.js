@@ -1,40 +1,45 @@
 import { getInverse } from './modularArithmeticUtils.js'
 import { TotientFunction, DecryptedBlock } from './RSAUtils.js'
+import { arrayJoin, arrayPush } from './arrayUtils.js'
 
-export function decrypt() {
-    const toDecryptTextArea = document.getElementById('toDecryptText')
-    if (!toDecryptTextArea.innerText) {
+export function decrypt(toDecryptTextDiv, privateKey1Input, privateKey2Input, encryptedTextP, decryptedTextP) {
+    
+    if (!toDecryptTextDiv.innerText) {
         alert('Por favor insira um RSA para ser decodificado...')
         return
     }
 
-    const encryptedBlocksValuesArray = toDecryptTextArea.innerText.split(' ')
+    const encryptedBlocksValuesArray = toDecryptTextDiv.innerText.split(' ')
     const decryptedBlocksValuesArray = []
     const decryptedCharArray = []
     
-    const privateKey1 = parseInt(document.getElementById('keyP').value)
-    const privateKey2 = parseInt(document.getElementById('keyQ').value)
-    const publicKey = privateKey1 * privateKey2
+    const privateKey1Value = parseInt(privateKey1Input.value)
+    const privateKey2Value = parseInt(privateKey2Input.value)
+    const publicKey = privateKey1Value * privateKey2Value
+    const totientFunction = new TotientFunction(privateKey1Value, privateKey2Value)
 
-    const decryptingKey = getInverse(3, new TotientFunction(privateKey1, privateKey2).value)
+    const decryptingKey = getInverse(3, totientFunction.value)
     alert(`Chave para a decodificação: ${decryptingKey}`)
 
-    for (const encryptedBlockValue of encryptedBlocksValuesArray) {
+    for (let i = 0; i < encryptedBlocksValuesArray.length; i++) {
+        const encryptedBlockValue = parseInt(encryptedBlocksValuesArray[i])
+
         const decryptedBlock = new DecryptedBlock(encryptedBlockValue, decryptingKey, publicKey)
-        decryptedBlocksValuesArray.push(decryptedBlock.value)
+        arrayPush(decryptedBlocksValuesArray, decryptedBlock.value)
     }
     
-    for (const decryptedBlockValue of decryptedBlocksValuesArray) {
+    for (let i = 0; i < decryptedBlocksValuesArray.length; i++) {
+        const decryptedBlockValue = decryptedBlocksValuesArray[i]
         const charCode = decryptedBlockValue === 99 ? decryptedBlockValue - 67 : decryptedBlockValue + 55
         const char = String.fromCharCode(charCode)
-        decryptedCharArray.push(char)
+        arrayPush(decryptedCharArray, char)
     }
 
-    const decryptedText = decryptedCharArray.join('')
+    const decryptedText = arrayJoin(decryptedCharArray, '')
 
-    document.getElementById('encryptedText').innerText = ''
-    document.getElementById('keyP').value = ''
-    document.getElementById('keyQ').value = ''
-    toDecryptTextArea.innerText = ''
-    document.getElementById('decryptedText').innerText = decryptedText
+    encryptedTextP.innerText = ''
+    privateKey1Input.value = ''
+    privateKey2Input.value = ''
+    toDecryptTextDiv.innerText = ''
+    decryptedTextP.innerText = decryptedText
 }

@@ -16,6 +16,10 @@ export function toUpperAndKeepAlphabets(object) {
 }
 
 export function keepNumbers(object) {
-    object.innerText = object.innerText.replace(/[^0-9 ]/g, '')
+    if (object.tagName === 'DIV') {
+        object.innerText = object.innerText.replace(/[^0-9 ]/g, '')
+    } else {
+        object.value = object.value.replace(/[^0-9 ]/g, '')        
+    }
     setTextCursorOnEnd(object)
 }

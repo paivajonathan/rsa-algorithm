@@ -1,9 +1,3 @@
-export class Block {
-    constructor(number) {
-        this.value = number
-    }
-}
-
 export class EncryptedBlock {
     constructor(blockValue, publicKey) {
         this.value = Math.pow(blockValue, 3) % publicKey
