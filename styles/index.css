@@ -60,20 +60,7 @@ a:hover {
         font-size: 3rem;
     }
 
-    .container-links {
-        flex-direction: column;
-    }
-
     a {
-        width: 80%;
-        font-size: 1.5rem;
-    }
-
-    a > span {
-        display: inline;
-    }
-
-    a > svg {
-        display: none;
+        width: 7rem;
     }
 }
