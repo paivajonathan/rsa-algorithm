@@ -6,7 +6,8 @@ h1 {
     font-size: 5rem;
     max-width: 100%;
     transition: font-size 200ms;
-    white-space: nowrap;
+    /* white-space: nowrap; */
+    text-align: center;
 }
 
 .container-links {
@@ -15,6 +16,7 @@ h1 {
     justify-content: center;
     gap: 3rem;
     align-items: center;
+    padding: 0 1rem;
 }
 
 a {
@@ -58,6 +60,10 @@ a:hover {
 @media only screen and (max-width: 500px) {
     h1 {
         font-size: 3rem;
+    }
+
+    .container-links {
+        gap: 1.5rem;
     }
 
     a {
