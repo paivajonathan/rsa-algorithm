@@ -6,7 +6,7 @@ h1 {
     font-size: 5rem;
     max-width: 100%;
     transition: font-size 200ms;
-    /* white-space: nowrap; */
+    padding: 0 2rem;
     text-align: center;
 }
 
