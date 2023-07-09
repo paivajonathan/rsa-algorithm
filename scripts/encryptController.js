@@ -2,10 +2,10 @@ import { generatePrimalPair } from './primalUtils.js'
 import { EncryptedBlock } from './RSAUtils.js'
 import { arrayJoin, arrayPush } from './arrayUtils.js'
 
-export function encrypt(toEncryptTextDiv, encryptedTextP, privateKey1Input, privateKey2Input, toDecryptTextDiv) {
-    const toEncryptText = toEncryptTextDiv.innerText
+export function encrypt(toEncryptTextArea, encryptedTextArea) {
+    const toEncryptText = toEncryptTextArea.value
 
-    if (!toEncryptText) {
+    if (toEncryptText === '') {
         alert('Por favor digite um texto para ser codificado...')
         return
     }
@@ -33,11 +33,8 @@ export function encrypt(toEncryptTextDiv, encryptedTextP, privateKey1Input, priv
         arrayPush(encryptedBlocksValuesArray, encryptedBlock.value)
     }
 
-    toEncryptTextDiv.innerText = ''
+    toEncryptTextArea.value = ''
     const encryptedText = arrayJoin(encryptedBlocksValuesArray, ' ')
     
-    encryptedTextP.innerText = encryptedText    
-    privateKey1Input.value = privateKey1
-    privateKey2Input.value = privateKey2
-    toDecryptTextDiv.innerText = encryptedText
+    encryptedTextArea.value = encryptedText
 }

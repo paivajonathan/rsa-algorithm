@@ -3,31 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Projeto RSA</title>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <script type="module" src="main.js"></script>
+        <title>Algoritmo RSA</title>
+        <link rel="shortcut icon" href="./cypherLock.png" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="./styles/root.css" />
+        <link rel="stylesheet" type="text/css" href="./styles/index.css" />
     </head>
     <body>
         <main>
-            <div class="title-group">
-                <h1>Seja bem vindo</h1>
-                <h2>à simulação do algoritmo RSA!</h2>
-            </div>
-            <div class="form">
-                <div class="input-group">
-                    <div id="toEncryptText" class="editable-div" contenteditable custom-placeholder="Digite aqui o texto a ser codificado..."></div>
-                    <button id="encryptButton">Codificar</button>
-                    <p id="encryptedText"></p>
-                </div>
-                <div class="input-group">
-                    <div class="keys-input-group">
-                        <input id="keyP" maxlength="2" placeholder="Chave 1" />
-                        <input id="keyQ" maxlength="2" placeholder="Chave 2" />
-                    </div>
-                    <div id="toDecryptText" class="editable-div" contenteditable custom-placeholder="Digite aqui o RSA a ser decodificado..."></div>
-                    <button id="decryptButton">Decodificar</button>
-                    <p id="decryptedText"></p>
-                </div>
+            <h1>Algoritmo RSA</h1>
+            <div class="container-links">
+                <a href="./views/encryptView.html" title="Clique para criptografar"><span>Criptografar</span><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg></a>
+                <a href="./views/decryptView.html" title="Clique para descriptografar"><span>Descriptografar</span><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17v80c0 13.3 10.7 24 24 24h80c13.3 0 24-10.7 24-24V448h40c13.3 0 24-10.7 24-24V384h40c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/></svg></a>
             </div>
         </main>
     </body>

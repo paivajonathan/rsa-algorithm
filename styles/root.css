@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    --blue-background-primary: #27374D;
+    --blue-background-secondary: #436087;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+main {
+    min-height: 100vh;
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    
+    background-image: linear-gradient(to right, #192331, #374f70);
+    background-size: 200% 200%;
+    background-attachment: fixed;
+    animation: moving-background ease 10s infinite;
+}
+
+@keyframes moving-background {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}

@@ -1,6 +1,6 @@
 import { getRandomBetween } from './randomUtils.js'
 
-function isPrimal(n) {
+export function isPrimal(n) {
     if (n > 1) {
         for (let i = 2; i < Math.sqrt(n); i++) {
             if (n % i === 0) {

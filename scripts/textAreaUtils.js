@@ -1,25 +1,11 @@
-export function setTextCursorOnEnd(object) {
-    if (object.tagName !== 'TEXTAREA' && object.getAttribute('contenteditable') === '') {
-        object.focus()
-        window.getSelection().selectAllChildren(object)
-        window.getSelection().collapseToEnd()
-    } else {
-        object.focus()
-        object.select()
-        window.getSelection().collapseToEnd()
-    }
+export function clearText(object) {
+    object.value = ''
 }
 
 export function toUpperAndKeepAlphabets(object) {
-    object.innerText = object.innerText.toUpperCase().replace(/[^A-Z ]/g, '')
-    setTextCursorOnEnd(object)
+    object.value = object.value.toUpperCase().replace(/[^A-Z ]/g, '')
 }
 
 export function keepNumbers(object) {
-    if (object.tagName === 'DIV') {
-        object.innerText = object.innerText.replace(/[^0-9 ]/g, '')
-    } else {
-        object.value = object.value.replace(/[^0-9 ]/g, '')        
-    }
-    setTextCursorOnEnd(object)
+    object.value = object.value.replace(/[^0-9 ]/g, '')
 }
