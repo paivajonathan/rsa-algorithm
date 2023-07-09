@@ -4,9 +4,13 @@
 
 h1 {
     font-size: 5rem;
+    max-width: 100%;
+    transition: font-size 200ms;
+    white-space: nowrap;
 }
 
 .container-links {
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 3rem;
@@ -34,6 +38,10 @@ a:hover {
 }
 
 @media only screen and (max-width: 850px) {
+    h1 {
+        font-size: 4rem;
+    }
+
     a {
         width: 10rem;
     }
@@ -44,5 +52,28 @@ a:hover {
 
     a > svg {
         display: inline;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .container-links {
+        flex-direction: column;
+    }
+
+    a {
+        width: 80%;
+        font-size: 1.5rem;
+    }
+
+    a > span {
+        display: inline;
+    }
+
+    a > svg {
+        display: none;
     }
 }
