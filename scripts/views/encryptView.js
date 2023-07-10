@@ -1,5 +1,5 @@
-import { encrypt } from './encryptController.js'
-import { clearText, toUpperAndKeepAlphabets } from './textAreaUtils.js'
+import { encrypt } from '../controllers/encryptController.js'
+import { clearText, toUpperAndKeepAlphabets } from '../utils/textAreaUtils.js'
 
 const toEncryptTextArea = document.getElementById('toEncryptText')
 const encryptedTextArea = document.getElementById('encryptedText')

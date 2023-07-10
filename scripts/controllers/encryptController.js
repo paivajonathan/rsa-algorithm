@@ -1,6 +1,6 @@
-import { generatePrimalPair } from './primalUtils.js'
-import { EncryptedBlock } from './RSAUtils.js'
-import { arrayJoin, arrayPush } from './arrayUtils.js'
+import { generatePrimalPair } from '../utils/primalUtils.js'
+import { EncryptedBlock } from '../models/RSAModels.js'
+import { arrayJoin, arrayPush } from '../utils/arrayUtils.js'
 
 export function encrypt(toEncryptTextArea, encryptedTextArea) {
     const toEncryptText = toEncryptTextArea.value

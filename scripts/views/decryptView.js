@@ -1,5 +1,5 @@
-import { decrypt } from './decryptController.js'
-import { clearText, keepNumbers } from './textAreaUtils.js'
+import { decrypt } from '../controllers/decryptController.js'
+import { clearText, keepNumbers } from '../utils/textAreaUtils.js'
 
 const privateKey1Input = document.getElementById('keyP')
 const privateKey2Input = document.getElementById('keyQ')

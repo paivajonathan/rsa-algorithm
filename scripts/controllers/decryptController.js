@@ -1,7 +1,7 @@
-import { getInverse } from './modularArithmeticUtils.js'
-import { TotientFunction, DecryptedBlock } from './RSAUtils.js'
-import { arrayJoin, arrayPush } from './arrayUtils.js'
-import { isPrimal } from './primalUtils.js'
+import { getInverse } from '../utils/modularArithmeticUtils.js'
+import { TotientFunction, DecryptedBlock } from '../models/RSAModels.js'
+import { arrayJoin, arrayPush } from '../utils/arrayUtils.js'
+import { isPrimal } from '../utils/primalUtils.js'
 
 export function decrypt(toDecryptTextArea, privateKey1Input, privateKey2Input, decryptedTextArea) {
     const toDecryptText = toDecryptTextArea.value
